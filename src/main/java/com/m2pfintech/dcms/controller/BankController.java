@@ -35,7 +35,4 @@ public class BankController {
 
 		return new ResponseEntity<List<Bank>>(banks, HttpStatus.OK);
 	}
-	
-	
-	
 }
