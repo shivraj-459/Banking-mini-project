@@ -143,7 +143,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Integer deleteCustomerByEntityId(Integer entityId) throws CustomerException, BankException {
+	public CustomerDTO deleteCustomerByEntityId(Integer entityId) throws CustomerException, BankException {
 
 		
 		Optional<Customer> opt= customerDao.findByEntityId(entityId);
@@ -164,8 +164,11 @@ public class CustomerServiceImpl implements CustomerService {
 				List<Customer> list= bank.getCustomerInfo();
 				list.remove(customer);
 				
+				CustomerDTO customerDTO = new CustomerDTO(customer.getEntityId(),customer.getFirstName(), customer.getMiddleName(), customer.getLastName(), customer.getEmail());
 				
 				customerDao.deleteById(customer.getEntityId());	
+				
+				return customerDTO;
 				
 			}else {
 				throw new BankException("Bankinfo not found for customer "+ entityId);
@@ -175,7 +178,6 @@ public class CustomerServiceImpl implements CustomerService {
 			throw new CustomerException("Entity ID not found : "+ entityId);
 		}
 		
-		return entityId;
 	}
 	
 	

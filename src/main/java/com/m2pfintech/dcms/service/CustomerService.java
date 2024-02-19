@@ -18,6 +18,6 @@ public interface CustomerService {
 	
 	public Customer updateCustomerCommunicationInfo(Communication communicationinfo,String email) throws CustomerException;
 	
-	public Integer deleteCustomerByEntityId(Integer entityId) throws CustomerException, BankException;
+	public CustomerDTO deleteCustomerByEntityId(Integer entityId) throws CustomerException, BankException;
 	
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.m2pfintech.dcms.exceptionHandler.BankException;
 import com.m2pfintech.dcms.exceptionHandler.CustomerException;
@@ -71,12 +72,12 @@ public class CustomerController {
 		
 	}
 	
-	@DeleteMapping("/customers/{entityid}")
-	public ResponseEntity<Integer> deleteCustomerHandler(@PathVariable("entityid") Integer entityID) throws CustomerException, BankException{
+	@DeleteMapping("/customers")
+	public ResponseEntity<CustomerDTO> deleteCustomerHandler(@RequestParam Integer entityID) throws CustomerException, BankException{
 		
-		Integer response = customerService.deleteCustomerByEntityId(entityID);
+		CustomerDTO response = customerService.deleteCustomerByEntityId(entityID);
 		
-		return new ResponseEntity<Integer>(response,HttpStatus.OK);
+		return new ResponseEntity<CustomerDTO>(response,HttpStatus.OK);
 	}
 	
 	
